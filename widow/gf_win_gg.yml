@@ -35,7 +35,6 @@
         state: directory
         mode: '0777'
       delegate_to: localhost
-      ansible_port: 22
       ignore_errors: true
         
     - name: Create CSV
@@ -43,7 +42,6 @@
         content: "{{ all_results }}"
         dest: "{{ result_file }}"
       delegate_to: localhost
-      ansible_port: 22
       no_log: true
       run_once: true
       tags: always
