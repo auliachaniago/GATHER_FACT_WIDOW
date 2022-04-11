@@ -22,11 +22,14 @@
           - all
     - debug: 
         msg: "{{ ansible_facts }}"
-      
+        
+    - set_fact:
+        porti: "22"
+        
     - name: Create CSV
       copy: 
-        content: "{{ ansible_hostname }}"
+        content: "{{ all_results }}"
         dest: /var/report/gf_win/server_facts.csv       
       delegate_to: 192.168.80.10
-      run_once: true 
+      run_once: true
 
