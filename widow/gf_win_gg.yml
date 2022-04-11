@@ -7,7 +7,7 @@
     - name: Get date for filename
       set_fact: date="{{ ansible_date_time.date }}"
       run_once: true
-
+      
     - name: ''
       set_fact: 
         ip: "{{ ansible_host }}"
@@ -24,12 +24,24 @@
         msg: "{{ ansible_facts }}"
         
     - set_fact:
+        result_path: "/var/report/gf_widow"
+        result_file: "/var/report/gf_widow/server_facts.csv"
         porti: "22"
+    - name: " Create dir master node"
+      file:
+        path: "{{ result_path }}"
+        recurse: yes
+        state: directory
+        mode: '0777'
+      delegate_to: localhost
+      ignore_errors: true
         
     - name: Create CSV
       copy: 
         content: "{{ all_results }}"
-        dest: /var/report/gf_win/server_facts.csv       
-      delegate_to: 192.168.80.10
+        dest: "{{ result_file }}"
+      delegate_to: localhost
+      no_log: true
       run_once: true
+      tags: always
 
