@@ -1,0 +1,32 @@
+---
+- name: Get Gather Facts from Remote Hosts
+  gather_facts: True
+  hosts: all
+  
+  tasks:
+    - name: Get date for filename
+      set_fact: date="{{ ansible_date_time.date }}"
+      run_once: true
+
+    - name: ''
+      set_fact: 
+        ip: "{{ ansible_host }}"
+
+#    - name: 'Change ssh port to 5986'
+#      set_fact:
+#        ansible_port: 5986
+
+    - name: Gather Ansible Facts About Host
+      setup:
+        gather_subset:
+          - all
+    - debug: 
+        msg: "{{ ansible_facts }}"
+      
+    - name: Create CSV
+      copy: 
+        content: "{{ ansible_hostname }}"
+        dest: /var/report/gf_win/server_facts.csv       
+      delegate_to: localhost
+      run_once: true 
+
