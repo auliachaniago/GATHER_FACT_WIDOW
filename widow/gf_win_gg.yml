@@ -44,8 +44,6 @@
           | {{ hostvars[host].nodename }} | {{ hostvars[host].domain }} | {{ hostvars[host].windows_domain_member }} | {{ hostvars[host].windows_domain_role }} |  {{ hostvars[host].distribution }} | {{ hostvars[host].distribution_major_version }} | {{ hostvars[host].distribution_version }} | {{ hostvars[host].architecture }} | {{ hostvars[host].bios_date }} | {{ hostvars[host].bios_version }} | {{ hostvars[host].connection_name }} | {{ hostvars[host].interface_name }} | {{ hostvars[host].ipv4_address }} | {{ hostvars[host].ipv6_address }} | {{ hostvars[host].default_gateway }} | {{ hostvars[host].mac_address }} | {{ hostvars[host].lastboot }} | {{ hostvars[host].reboot_pending }} | {{ hostvars[host].uptime }} | {{ hostvars[host].machine_id }} | {{ hostvars[host].total_memory }} | {{ hostvars[host].processor }} | {{ hostvars[host].processor_cores }} | {{ hostvars[host].processor_count }} | {{ hostvars[host].product_name }} |
           {% endfor %}
         dest: "{{ result_file }}"
-      delegate_to: localhost
-      no_log: true
+      delegate_to: localhost    
       run_once: true
-      tags: always
 
