@@ -38,7 +38,7 @@
       ignore_errors: true
     
     - name: "PowerShell Helix Ultra"
-      win_shell: net users
+      win_shell: Get-LocalUser | select name
       register: net_user
     - debug:
         msg: "{{ net_user }}"
