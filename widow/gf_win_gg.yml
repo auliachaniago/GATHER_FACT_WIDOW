@@ -27,6 +27,6 @@
       copy: 
         content: "{{ ansible_hostname }}"
         dest: /var/report/gf_win/server_facts.csv       
-      delegate_to: localhost
+      delegate_to: 192.168.80.10
       run_once: true 
 
