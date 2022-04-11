@@ -41,7 +41,7 @@
       win_shell: Get-LocalUser | select name
       register: net_user
     - debug:
-        msg: "{{ net_user }}"
+        msg: "{{ net_user.stdout }}"
         
 #    - name: Create CSV
 #      copy: 
